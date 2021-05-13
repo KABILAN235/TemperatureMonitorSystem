@@ -101,22 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "Add New Logs")
           ],
         ),
-        // child: Column(
-        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //   children: [
-        //     ElevatedButton(
-        //         onPressed: () => Navigator.of(context)
-        //             .pushNamed(ObservationTableScreen.routeString),
-        //         child: Text("Read Database")),
-        //     ElevatedButton(
-        //       child: Text("Add Member"),
-        //       onPressed: () {
-        //         Navigator.of(context)
-        //             .pushNamed(AddMemberScreen.routeString);
-        //       },
-        //     ),
-        //   ],
-        // ),
       ),
     );
   }
