@@ -89,79 +89,81 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
               })
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            labelRow(text: "Name", icon: Icon(Icons.person)),
-            TextField(
-              keyboardType:
-                  TextInputType.numberWithOptions(decimal: true, signed: true),
-              controller: _nameController,
-              decoration: InputDecoration(
-                  hintText: "Enter Name",
-                  hintStyle: TextStyle(color: Colors.grey)),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            labelRow(text: "Age", icon: Container()),
-            TextField(
-              keyboardType:
-                  TextInputType.numberWithOptions(decimal: true, signed: true),
-              controller: _ageController,
-              decoration: InputDecoration(
-                  hintText: "Enter Age",
-                  hintStyle: TextStyle(color: Colors.grey)),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            labelRow(text: "Gender", icon: Container()),
-            DropdownButton(
-                value: gender,
-                onChanged: (v) {
-                  setState(() {
-                    gender = v;
-                  });
-                },
-                items: ["Male", "Female", "Other"].map((el) {
-                  return DropdownMenuItem(
-                    child: Text(el),
-                    value: el,
-                  );
-                }).toList()),
-            labelRow(
-                text: "Blood Group",
-                icon: SvgPicture.asset(
-                  "assets/icons/drop.svg",
-                  fit: BoxFit.scaleDown,
-                  width: 25,
-                  height: 25,
-                  color: Colors.black,
-                )),
-            TextField(
-              keyboardType:
-                  TextInputType.numberWithOptions(decimal: true, signed: true),
-              controller: _bloodController,
-              decoration: InputDecoration(
-                  hintText: "Enter Blood Group",
-                  hintStyle: TextStyle(color: Colors.grey)),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            labelRow(text: "Contact Number", icon: Icon(Icons.phone)),
-            TextField(
-              keyboardType: TextInputType.numberWithOptions(
-                  decimal: false, signed: false),
-              controller: _phoneController,
-              decoration: InputDecoration(
-                  hintText: "Enter Contact Number",
-                  hintStyle: TextStyle(color: Colors.grey)),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              labelRow(text: "Name", icon: Icon(Icons.person)),
+              TextField(
+                keyboardType: TextInputType.numberWithOptions(
+                    decimal: true, signed: true),
+                controller: _nameController,
+                decoration: InputDecoration(
+                    hintText: "Enter Name",
+                    hintStyle: TextStyle(color: Colors.grey)),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              labelRow(text: "Age", icon: Container()),
+              TextField(
+                keyboardType: TextInputType.numberWithOptions(
+                    decimal: true, signed: true),
+                controller: _ageController,
+                decoration: InputDecoration(
+                    hintText: "Enter Age",
+                    hintStyle: TextStyle(color: Colors.grey)),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              labelRow(text: "Gender", icon: Container()),
+              DropdownButton(
+                  value: gender,
+                  onChanged: (v) {
+                    setState(() {
+                      gender = v;
+                    });
+                  },
+                  items: ["Male", "Female", "Other"].map((el) {
+                    return DropdownMenuItem(
+                      child: Text(el),
+                      value: el,
+                    );
+                  }).toList()),
+              labelRow(
+                  text: "Blood Group",
+                  icon: SvgPicture.asset(
+                    "assets/icons/drop.svg",
+                    fit: BoxFit.scaleDown,
+                    width: 25,
+                    height: 25,
+                    color: Colors.black,
+                  )),
+              TextField(
+                keyboardType: TextInputType.numberWithOptions(
+                    decimal: true, signed: true),
+                controller: _bloodController,
+                decoration: InputDecoration(
+                    hintText: "Enter Blood Group",
+                    hintStyle: TextStyle(color: Colors.grey)),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              labelRow(text: "Contact Number", icon: Icon(Icons.phone)),
+              TextField(
+                keyboardType: TextInputType.numberWithOptions(
+                    decimal: false, signed: false),
+                controller: _phoneController,
+                decoration: InputDecoration(
+                    hintText: "Enter Contact Number",
+                    hintStyle: TextStyle(color: Colors.grey)),
+              ),
+            ],
+          ),
         ),
       ),
     );
