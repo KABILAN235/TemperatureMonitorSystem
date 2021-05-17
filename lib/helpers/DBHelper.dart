@@ -6,7 +6,6 @@ import 'package:temperature_monitor_system/models/RecordModel.dart';
 
 class DBHelper {
   sql.Database tempDataBase;
-  Map uidIndex;
 
   static String returnDateString(DateTime dateTime) {
     Map monthKey = {
@@ -142,23 +141,6 @@ class DBHelper {
     var qRes = await tempDataBase.rawQuery(
         "SELECT * FROM TemperatureData WHERE Date='${returnDateString(dtime)}'");
     return qRes;
-    // qRes.forEach((e) async {
-    //   var uid = await getNameFromUID(e['uid']);
-    //   print(e['uid']);
-    //   print(uid);
-    //   print(e['pulse']);
-    //   out.add(uid);
-
-    // out.add(Record(
-    //     name: uid,
-    //     uid: e['uid'],
-    //     oxygen: e['oxy'],
-    //     temperature: e['temp'],
-    //     pulse: e['pulse'],
-    //     date: e['date']));
-    // });
-    // print("GetRecords over");
-    // return out;
   }
 
   Future<String> getNameFromUID(String uid) async {
