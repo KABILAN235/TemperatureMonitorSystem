@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:temperature_monitor_system/helpers/DBHelper.dart';
+import 'package:temperature_monitor_system/helpers/SQLHelper.dart';
 
 import 'AddMemberScreen.dart';
 import 'AddNewRecord.dart';
@@ -29,16 +29,18 @@ class _UpdateRecordScreenState extends State<UpdateRecordScreen> {
   TextEditingController _tempController;
   TextEditingController _oxyController;
   TextEditingController _pulseController;
+  Stream nameStream;
   DateTime date;
-  DBHelper db;
+  SQLHelper db;
 
   @override
   void initState() {
-    db = DBHelper();
+    db = SQLHelper();
     _tempController = TextEditingController(text: widget.temp.toString());
     _oxyController = TextEditingController(text: widget.oxy.toString());
     _pulseController = TextEditingController(text: widget.pulse.toString());
     date = widget.date;
+    nameStream = db.getNameFromUID(widget.uid.toString()).asStream();
     super.initState();
   }
 
@@ -80,7 +82,7 @@ class _UpdateRecordScreenState extends State<UpdateRecordScreen> {
                 height: 10,
               ),
               StreamBuilder(
-                  stream: db.getNameFromUID(widget.uid.toString()).asStream(),
+                  stream: nameStream,
                   builder: (ctx, snap) {
                     if (snap.connectionState == ConnectionState.waiting) {
                       return CircularProgressIndicator();
@@ -148,7 +150,7 @@ class _UpdateRecordScreenState extends State<UpdateRecordScreen> {
                 height: 15,
               ),
               Text(
-                DBHelper.returnDateString(date),
+                SQLHelper.returnDateString(date),
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
               SizedBox(

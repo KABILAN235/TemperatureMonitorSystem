@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:temperature_monitor_system/helpers/DBHelper.dart';
+import 'package:temperature_monitor_system/helpers/SQLHelper.dart';
 import 'AddNewRecord.dart';
 
 class AddMemberScreen extends StatefulWidget {
@@ -12,7 +12,7 @@ class AddMemberScreen extends StatefulWidget {
 }
 
 class _AddMemberScreenState extends State<AddMemberScreen> {
-  DBHelper db;
+  SQLHelper db;
   TextEditingController _nameController;
   TextEditingController _ageController;
   TextEditingController _bloodController;
@@ -25,7 +25,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     _ageController = TextEditingController();
     _bloodController = TextEditingController();
     _phoneController = TextEditingController();
-    db = DBHelper();
+    db = SQLHelper();
     super.initState();
   }
 

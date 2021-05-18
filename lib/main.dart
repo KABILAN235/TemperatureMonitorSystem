@@ -3,7 +3,7 @@ import 'package:temperature_monitor_system/Screens/AddMemberScreen.dart';
 import 'package:temperature_monitor_system/Screens/AddNewRecord.dart';
 import 'package:temperature_monitor_system/Screens/MemberScreen.dart';
 import 'package:temperature_monitor_system/Screens/ObservationScreen.dart';
-import 'package:temperature_monitor_system/helpers/DBHelper.dart';
+import 'package:temperature_monitor_system/helpers/SQLHelper.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,10 +35,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  DBHelper db;
+  SQLHelper db;
   @override
   void initState() {
-    db = DBHelper();
+    db = SQLHelper();
     super.initState();
   }
 

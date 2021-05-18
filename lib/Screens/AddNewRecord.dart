@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:path_provider/path_provider.dart' as path;
 import 'package:temperature_monitor_system/Screens/AddMemberScreen.dart';
-import 'package:temperature_monitor_system/helpers/DBHelper.dart';
+import 'package:temperature_monitor_system/helpers/SQLHelper.dart';
 
 class AddNewRecordScreen extends StatefulWidget {
   static String routeString = "/AddNewRecord";
@@ -22,11 +21,11 @@ class _AddNewRecordScreenState extends State<AddNewRecordScreen> {
   Future<List<dynamic>> nameOfMems;
 
   DateTime date;
-  DBHelper db;
+  SQLHelper db;
 
   @override
   void initState() {
-    db = DBHelper();
+    db = SQLHelper();
     _tempController = TextEditingController();
     _oxyController = TextEditingController();
     _pulseController = TextEditingController();
@@ -56,6 +55,13 @@ class _AddNewRecordScreenState extends State<AddNewRecordScreen> {
           child: Icon(Icons.check), onPressed: () => onHitSave()),
       appBar: AppBar(
         title: Text("Add New Record"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.sync),
+              onPressed: () {
+                setState(() {});
+              })
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -75,9 +81,10 @@ class _AddNewRecordScreenState extends State<AddNewRecordScreen> {
                       return Text("Error");
                     }
                     List data = List.castFrom<dynamic, String>(snap.data);
+                    print(data);
                     return DropdownButton(
                       onTap: () {
-                        setState(() {});
+                        // setState(() {});
                       },
                       value: name,
                       hint: Text("Please Select A Member"),
@@ -160,7 +167,7 @@ class _AddNewRecordScreenState extends State<AddNewRecordScreen> {
                 height: 15,
               ),
               Text(
-                DBHelper.returnDateString(date),
+                SQLHelper.returnDateString(date),
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
               SizedBox(
