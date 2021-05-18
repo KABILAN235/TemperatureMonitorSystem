@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:temperature_monitor_system/Screens/AddMemberScreen.dart';
 import 'package:temperature_monitor_system/Screens/EditMemberScreen.dart';
-import 'package:temperature_monitor_system/helpers/DBHelper.dart';
+import 'package:temperature_monitor_system/helpers/SQLHelper.dart';
 
 class MemberScreen extends StatefulWidget {
   static String routeString = "/MemberScreen";
@@ -12,10 +12,10 @@ class MemberScreen extends StatefulWidget {
 }
 
 class _MemberScreenState extends State<MemberScreen> {
-  DBHelper db;
+  SQLHelper db;
   @override
   void initState() {
-    db = DBHelper();
+    db = SQLHelper();
     super.initState();
   }
 
@@ -31,6 +31,13 @@ class _MemberScreenState extends State<MemberScreen> {
       ),
       appBar: AppBar(
         title: Text("Member Management"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.sync),
+              onPressed: () {
+                setState(() {});
+              })
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(

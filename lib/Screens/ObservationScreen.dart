@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:temperature_monitor_system/Screens/EditAndViewRecord.dart';
-import 'package:temperature_monitor_system/helpers/DBHelper.dart';
+import 'package:temperature_monitor_system/helpers/SQLHelper.dart';
 import 'AddNewRecord.dart';
 
 class ObservationTableScreen extends StatefulWidget {
@@ -14,12 +14,12 @@ class ObservationTableScreen extends StatefulWidget {
 }
 
 class _ObservationTableScreenState extends State<ObservationTableScreen> {
-  DBHelper db;
+  SQLHelper db;
   Future tableData;
   DateTime date;
   @override
   void initState() {
-    db = DBHelper();
+    db = SQLHelper();
     date = DateTime.now();
     super.initState();
   }
@@ -36,6 +36,13 @@ class _ObservationTableScreenState extends State<ObservationTableScreen> {
       ),
       appBar: AppBar(
         title: Text("Log Inspector"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.sync),
+              onPressed: () {
+                setState(() {});
+              })
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -61,7 +68,7 @@ class _ObservationTableScreenState extends State<ObservationTableScreen> {
                     ),
                   ),
                   Spacer(),
-                  Text(DBHelper.returnDateString(date),
+                  Text(SQLHelper.returnDateString(date),
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   SizedBox(
                     width: 15,
@@ -79,7 +86,7 @@ class _ObservationTableScreenState extends State<ObservationTableScreen> {
                     if (data.length == 0) {
                       return Center(
                         child: Text(
-                          "No Logs On ${DBHelper.returnDateString(date)}",
+                          "No Logs On ${SQLHelper.returnDateString(date)}",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       );
@@ -121,7 +128,7 @@ class _ObservationTableScreenState extends State<ObservationTableScreen> {
                                 await Navigator.of(context)
                                     .push(MaterialPageRoute(builder: (ctx) {
                                   return UpdateRecordScreen(
-                                      uid: e['uid'],
+                                      uid: e['uid'].toString(),
                                       rec_id: e['rec_id'],
                                       date: date,
                                       oxy: e['oxy'],
@@ -132,12 +139,13 @@ class _ObservationTableScreenState extends State<ObservationTableScreen> {
                               },
                               cells: [
                                 DataCell(StreamBuilder(
-                                    stream:
-                                        db.getNameFromUID(e['uid']).asStream(),
+                                    stream: db
+                                        .getNameFromUID(e['uid'].toString())
+                                        .asStream(),
                                     builder: (ctx, snap) {
                                       if (snap.connectionState ==
                                           ConnectionState.waiting) {
-                                        return Text(e['uid']);
+                                        return Text(e['uid'].toString());
                                       }
                                       String textC = snap.data;
                                       return Text(textC);

@@ -6,7 +6,6 @@ import 'package:temperature_monitor_system/models/RecordModel.dart';
 
 class DBHelper {
   sql.Database tempDataBase;
-  Map uidIndex;
 
   static String returnDateString(DateTime dateTime) {
     Map monthKey = {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:temperature_monitor_system/helpers/DBHelper.dart';
+import 'package:temperature_monitor_system/helpers/SQLHelper.dart';
 import 'AddNewRecord.dart';
 
 class EditMemberScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class EditMemberScreen extends StatefulWidget {
 }
 
 class _EditMemberScreenState extends State<EditMemberScreen> {
-  DBHelper db;
+  SQLHelper db;
   TextEditingController _nameController;
   TextEditingController _ageController;
   TextEditingController _bloodController;
@@ -38,7 +38,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
         : widget.gender == "F"
             ? "Female"
             : "Other";
-    db = DBHelper();
+    db = SQLHelper();
     _nameController = TextEditingController(text: widget.name);
     _ageController = TextEditingController(text: widget.age.toString());
     _bloodController = TextEditingController(text: widget.bloodGroup);
